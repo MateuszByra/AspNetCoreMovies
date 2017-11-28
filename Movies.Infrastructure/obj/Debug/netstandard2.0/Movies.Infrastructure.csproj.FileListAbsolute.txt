@@ -1,0 +1,11 @@
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.deps.json
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.dll
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.pdb
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.csprojResolveAssemblyReference.cache
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.AssemblyInfoInputs.cache
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.AssemblyInfo.cs
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.dll
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.pdb
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.dll
+D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.pdb

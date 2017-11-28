@@ -1,0 +1,17 @@
+﻿@model MovieViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@using(Html.BeginForm(FormMethod.Post, new { controller = "Movies", action = "AddMovie" }))
+{
+    @Html.EditorForModel()
+    @*@Html.LabelFor(x => x.Title)
+    @Html.TextBoxFor(x=>x.Title)
+
+
+    @Html.LabelFor(x=>x.DurationInMinutes)
+    @Html.TextBoxFor(x => x.DurationInMinutes)*@
+}
