@@ -7,11 +7,11 @@
 
 @using(Html.BeginForm(FormMethod.Post, new { controller = "Movies", action = "AddMovie" }))
 {
-    @Html.EditorForModel()
-    @*@Html.LabelFor(x => x.Title)
+    @Html.LabelFor(x => x.Title)
     @Html.TextBoxFor(x=>x.Title)
 
 
     @Html.LabelFor(x=>x.DurationInMinutes)
-    @Html.TextBoxFor(x => x.DurationInMinutes)*@
+    @Html.TextBoxFor(x => x.DurationInMinutes)
+    <input type="submit" value="Create" />
 }

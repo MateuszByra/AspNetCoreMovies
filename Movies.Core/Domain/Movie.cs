@@ -13,6 +13,8 @@ namespace Movies.Core.Domain
         public Movie(string title, double durationMinutes)
         {
             Id = Guid.NewGuid();
+            Title = title;
+            DurationMinutes = durationMinutes;
         }
 
         public static Movie CreateMovie(string title, double durationMinutes)

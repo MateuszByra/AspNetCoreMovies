@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Autofac;
 using Movies.Infrastructure.IoC.Modules;
 using Autofac.Extensions.DependencyInjection;
+using Movies.Web.AutoMapper;
 
 namespace Movies.Web
 {
@@ -30,6 +31,9 @@ namespace Movies.Web
             var builder = new ContainerBuilder();
             builder.Populate(services);
             builder.RegisterModule(new ContainerModule(Configuration));
+            builder.RegisterInstance(AutoMapperConfigWeb.Initialize())
+                    .SingleInstance();
+
             ApplicationContainer = builder.Build();
 
             return new AutofacServiceProvider(ApplicationContainer);

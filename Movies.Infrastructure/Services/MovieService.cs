@@ -5,6 +5,7 @@ using Movies.Infrastructure.DTO;
 using Movies.Core.Repositories;
 using AutoMapper;
 using Movies.Core.Domain;
+using Movies.Infrastructure.Commands.Movies;
 
 namespace Movies.Infrastructure.Services
 {
@@ -19,9 +20,9 @@ namespace Movies.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public void CreateMovie(string title, double durationInMinutes)
+        public void CreateMovie(CreateMovie command)
         {
-            var movie = new Movie(title, durationInMinutes);
+            var movie = Movie.CreateMovie(command.Title, command.DurationMinutes);
             _movieRepository.AddMovie(movie);
         }
 

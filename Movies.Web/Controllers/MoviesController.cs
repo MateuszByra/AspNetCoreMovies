@@ -7,18 +7,15 @@ using Movies.Infrastructure.Services;
 using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Web.Models;
+using AutoMapper;
 
 namespace Movies.Web.Controllers
 {
-    public class MoviesController : Controller
+    public class MoviesController : BaseController
     {
-        //private readonly IMovieService _moviesService;
-        private readonly ICommandDispatcher _commandDispatcher;
 
-        public MoviesController(IMovieService moviesService, ICommandDispatcher commandDispatcher)
+        public MoviesController(ICommandDispatcher commandDispatcher, IMapper mapper) : base(commandDispatcher,mapper)
         {
-            //_moviesService = moviesService;
-            _commandDispatcher = commandDispatcher;
         }
 
         public IActionResult Index()
@@ -28,7 +25,7 @@ namespace Movies.Web.Controllers
 
         public IActionResult AddMovie(MovieViewModel model)
         {
-            //_commandDispatcher.Dispatch(command);
+            Dispatch<MovieViewModel, CreateMovie>(model);
             return View("Index");
         }
     }

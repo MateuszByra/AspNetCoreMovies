@@ -15,11 +15,22 @@ namespace Movies.Infrastructure.Mappers
                cfg.CreateMap<Movie, MovieDTO>();
            })
             .CreateMapper();
-        /*Mogłby zwracać tablicę konfiguracji, która teraz jest ładowana do MapperConfiguration i tworzony mapper.
-         W Webowej uzupełnić tablicę i dopiero utworzyć mappera.*/
 
-        public static Action<IMapperConfigurationExpression> GetMapperConfigurationExpression() =>
-            (cfg) => { cfg.CreateMap<Movie, MovieDTO>(); };
-            
+        /// <summary>
+        /// Mapper configuration with configuration from other app layer.
+        /// </summary>
+        /// <param name="configuration">Configure action</param>
+        /// <returns></returns>
+        public static IMapper InitializeMapperForWholeApplication(Action<IMapperConfigurationExpression> configuration)
+        {
+            return new MapperConfiguration(cfg =>
+            {
+                configuration(cfg);
+                cfg.CreateMap<Movie, MovieDTO>();
+            })
+            .CreateMapper();
+        }
+
+
     }
 }

@@ -9,7 +9,7 @@ namespace Movies.Infrastructure.Repositories
 {
     public class InMemoryMovieRepository : IMovieRepository
     {
-        private ISet<Movie> _movies = new HashSet<Movie>();
+        private static ISet<Movie> _movies = new HashSet<Movie>();
 
         public void AddMovie(Movie movie)
         {

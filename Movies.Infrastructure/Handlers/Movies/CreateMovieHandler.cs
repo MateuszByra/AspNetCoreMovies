@@ -17,7 +17,7 @@ namespace Movies.Infrastructure.Handlers.Movies
         }
         public void Handle(CreateMovie command)
         {
-            _movieService.CreateMovie(command.Title, command.DurationMinutes);
+            _movieService.CreateMovie(command);
         }
     }
 }

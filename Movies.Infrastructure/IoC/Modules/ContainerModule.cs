@@ -15,8 +15,8 @@ namespace Movies.Infrastructure.IoC.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInstance(AutoMapperConfig.Initialize())
-                .SingleInstance();
+            //builder.RegisterInstance(AutoMapperConfig.Initialize())
+            //    .SingleInstance();
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<ServiceModule>();
