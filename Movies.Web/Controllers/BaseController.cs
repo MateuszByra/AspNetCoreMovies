@@ -19,10 +19,15 @@ namespace Movies.Web.Controllers
             _mapper = mapper;
         }
 
-        protected void Dispatch<TviewModel, Tcommand>(TviewModel model) where Tcommand : ICommand
+        protected bool Dispatch<TviewModel, Tcommand>(TviewModel model) where Tcommand : ICommand
         {/*try,catch*/
-            var command = _mapper.Map<TviewModel, Tcommand>(model);
-            _commandDispatcher.Dispatch(command);
+            if (ModelState.IsValid)
+            {
+                var command = _mapper.Map<TviewModel, Tcommand>(model);
+                _commandDispatcher.Dispatch(command);
+                return true;
+            }
+            return false;
         }
     }
 }

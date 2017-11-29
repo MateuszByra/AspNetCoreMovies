@@ -60,6 +60,10 @@ namespace Movies.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "Movies",
+                    template:" { controller = Movies}/{action = Index }"
+                );
             });
 
             appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());

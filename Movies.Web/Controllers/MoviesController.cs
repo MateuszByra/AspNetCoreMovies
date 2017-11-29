@@ -13,20 +13,33 @@ namespace Movies.Web.Controllers
 {
     public class MoviesController : BaseController
     {
+        private readonly IMovieService _movieService;
 
-        public MoviesController(ICommandDispatcher commandDispatcher, IMapper mapper) : base(commandDispatcher,mapper)
+        public MoviesController(ICommandDispatcher commandDispatcher,
+            IMapper mapper,
+            IMovieService movieService) : base(commandDispatcher, mapper)
         {
+            _movieService = movieService;
         }
 
         public IActionResult Index()
         {
+            return View(_movieService.GetAll());
+        }
+
+        public IActionResult CreateMovie()
+        {
             return View();
         }
 
+        [HttpPost]
         public IActionResult AddMovie(MovieViewModel model)
         {
-            Dispatch<MovieViewModel, CreateMovie>(model);
-            return View("Index");
+            if (Dispatch<MovieViewModel, CreateMovie>(model))
+            {
+                return RedirectToAction("Index");
+            }
+            return View("CreateMovie", model);
         }
     }
 }

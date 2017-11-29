@@ -9,3 +9,14 @@ D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies
 D:\Projekty\Testowe\Movies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.pdb
 D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.dll
 D:\Projekty\Testowe\Movies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.pdb
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.deps.json
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.dll
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Infrastructure.pdb
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.dll
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\bin\Debug\netstandard2.0\Movies.Core.pdb
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.csprojResolveAssemblyReference.cache
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.csproj.CoreCompileInputs.cache
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.AssemblyInfoInputs.cache
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.AssemblyInfo.cs
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.dll
+C:\PROJEKTY\AspNetCoreMovies\Movies.Infrastructure\obj\Debug\netstandard2.0\Movies.Infrastructure.pdb

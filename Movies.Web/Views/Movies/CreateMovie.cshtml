@@ -1,0 +1,17 @@
+﻿@model MovieViewModel
+@{
+    ViewData["Title"] = "Create Movie";
+}
+<h2>Index</h2>
+@using (Html.BeginForm(FormMethod.Post, new { controller = "Movies", action = "AddMovie" }))
+{
+    @Html.LabelFor(x => x.Title)
+    @Html.TextBoxFor(x => x.Title)
+    @Html.ValidationMessageFor(x => x.Title)
+
+
+    @Html.LabelFor(x => x.DurationInMinutes)
+    @Html.TextBoxFor(x => x.DurationInMinutes, new { min = 1, step = "0.01" })
+    @Html.ValidationMessageFor(x => x.DurationInMinutes)
+    <input type="submit" value="Create" />
+}
