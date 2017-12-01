@@ -8,8 +8,7 @@ namespace Movies.Infrastructure.Extensions
         {
             var section = typeof(T).Name.Replace("Settings", string.Empty);
             var settings = new T();
-            //configuration.GetSection(section).Bind(settings); TODO check reference for Bind method
-
+            configuration.GetSection(section).Bind(settings);
             return settings;
         }
     }
