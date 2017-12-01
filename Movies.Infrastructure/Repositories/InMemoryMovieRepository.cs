@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Movies.Infrastructure.Repositories
 {
-    public class InMemoryMovieRepository : IMovieRepository
+    public class InMemoryMovieRepository : IMovieRepository, ILiteDbRepository
     {
         private static ISet<Movie> _movies = new HashSet<Movie>();
 

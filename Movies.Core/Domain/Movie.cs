@@ -10,6 +10,11 @@ namespace Movies.Core.Domain
         public string Title { get; set; }
         public double DurationMinutes { get; set; }
 
+        protected Movie()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Movie(string title, double durationMinutes)
         {
             Id = Guid.NewGuid();

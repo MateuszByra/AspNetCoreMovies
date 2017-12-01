@@ -20,6 +20,7 @@ namespace Movies.Infrastructure.IoC.Modules
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule(new SettingsModule(_configuration));
         }
     }
 }
