@@ -10,8 +10,8 @@
     @Html.ValidationMessageFor(x => x.Title)
 
 
-    @Html.LabelFor(x => x.DurationInMinutes)
-    @Html.TextBoxFor(x => x.DurationInMinutes, new { min = 1, step = "0.01" })
-    @Html.ValidationMessageFor(x => x.DurationInMinutes)
+    @Html.LabelFor(x => x.DurationMinutes)
+    @Html.TextBoxFor(x => x.DurationMinutes, new { min = 1, step = "0.01" })
+    @Html.ValidationMessageFor(x => x.DurationMinutes)
     <input type="submit" value="Create" />
 }

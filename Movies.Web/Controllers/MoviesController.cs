@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Infrastructure.DTO;
@@ -38,14 +39,26 @@ namespace Movies.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddMovie(MovieViewModel model)
-        //{
-        //    if (Dispatch<MovieViewModel, CreateMovie>(model))
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View("CreateMovie", model);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> AddMovie(MovieViewModel model)
+        {
+            //if (Dispatch<MovieViewModel, CreateMovie>(model))
+            //{
+            //    return RedirectToAction("Index");
+            //}
+        
+            using (var client = new HttpClient())
+            {
+                //HttpResponseMessage response = await client.PostAsync("http://localhost:57218/api/Movies",model,new JsonMediaTypeFormatter());
+                HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:57218/api/Movies", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    //movie = await response.Content.ReadAsAsync<IEnumerable<MovieDTO>>();
+                    return RedirectToAction("Index");
+                }
+            
+            }
+            return View("CreateMovie", model);
+        }
     }
 }

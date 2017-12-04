@@ -20,6 +20,6 @@ namespace Movies.Web.Models
         [Range(1,double.MaxValue, ErrorMessage = "Nieprawidłowy zakres.")]
         [Display(Name = "Czas trwania w minutach")]
         [DataType(DataType.Currency)]
-        public double DurationInMinutes { get; set; }
+        public double DurationMinutes { get; set; }
     }
 }

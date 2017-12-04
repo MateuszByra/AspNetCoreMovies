@@ -16,7 +16,7 @@ namespace Movies.Web.AutoMapper
             AutoMapperConfig.InitializeMapperForWholeApplication(cfg => {
 
                 cfg.CreateMap<MovieViewModel, CreateMovie>()
-                    .ForMember(dest => dest.DurationMinutes, opt => opt.MapFrom(src => src.DurationInMinutes))
+                    .ForMember(dest => dest.DurationMinutes, opt => opt.MapFrom(src => src.DurationMinutes))
                     .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title));
             });
     }
