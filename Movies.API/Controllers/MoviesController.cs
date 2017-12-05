@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
+using Movies.Infrastructure.DTO;
 using Movies.Infrastructure.Services;
 
 namespace Movies.API.Controllers
@@ -40,6 +41,19 @@ namespace Movies.API.Controllers
         public IActionResult Save([FromBody]CreateMovie command)
         {
             Dispatch(command);
+            return Created("api/Movies", null);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody]MovieDTO command)
+        {
+            _movieService.UpdateMovie(command.Id, command.Title, command.DurationMinutes);
+            return Created("api/Movies", null);
+        }
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _movieService.DeleteMovie(id);
             return Created("api/Movies", null);
         }
     }

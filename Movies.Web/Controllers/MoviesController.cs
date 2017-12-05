@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
@@ -32,6 +33,28 @@ namespace Movies.Web.Controllers
                 return RedirectToAction("Index");
             }
             return View("CreateMovie", model);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var statusCode = await DeleteApiAsync("http://localhost:57218/api/Movies?id=", id);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var movie = await GetApiDataAsync<MovieDTO>("http://localhost:57218/api/Movies", id);
+            var vmodel = new MovieViewModel
+            {
+                DurationMinutes = movie.DurationMinutes,
+                Id = movie.Id,
+                Title = movie.Title
+            };
+            return View(vmodel);
+        }
+        public async Task<IActionResult> EditMovie(MovieViewModel model)
+        {
+            var movies = await PutApiAsync<MovieViewModel>("http://localhost:57218/api/Movies", model);
+            return RedirectToAction("Index");
         }
     }
 }

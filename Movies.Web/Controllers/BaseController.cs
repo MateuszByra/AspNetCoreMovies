@@ -40,6 +40,16 @@ namespace Movies.Web.Controllers
                     );
             return result;
         }
+        protected async Task<T> GetApiDataAsync<T>(string url, Guid id) where T : class, new()
+        {
+            var result = new T();
+
+            await callApiAsync(
+                    async (client) => await client.GetAsync($"{url}?id={id}"),
+                    async (responseMsg) => result = await responseMsg.Content.ReadAsAsync<T>()
+                    );
+            return result;
+        }
 
         protected async Task<HttpStatusCode> PostApiAsync<Tmodel>(string url, Tmodel model) where Tmodel : class
         {
@@ -51,6 +61,25 @@ namespace Movies.Web.Controllers
             return code;
         }
 
-        //TODO: call PUT async, call DELETE asyn
+        protected async Task<HttpStatusCode> PutApiAsync<Tmodel>(string url, Tmodel model) where Tmodel : class
+        {
+            HttpStatusCode code = HttpStatusCode.NotFound; //default
+            await callApiAsync(
+                    async (client) => await client.PutAsJsonAsync(url, model),
+                    (responseMsg) => code = responseMsg.StatusCode
+                );
+            return code;
+        }
+
+        protected async Task<HttpStatusCode> DeleteApiAsync(string url, Guid id)
+        {
+            HttpStatusCode code = HttpStatusCode.NotFound; //default
+            await callApiAsync(
+                    async (client) => await client.DeleteAsync(url+id),
+                    (responseMsg) => code = responseMsg.StatusCode
+                );
+            return code;
+        }
+
     }
 }
