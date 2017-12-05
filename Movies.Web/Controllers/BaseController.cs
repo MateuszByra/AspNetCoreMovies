@@ -5,29 +5,52 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Movies.Infrastructure.Commands;
+using System.Net.Http;
+using System.Net;
 
 namespace Movies.Web.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly ICommandDispatcher _commandDispatcher;
-        protected readonly IMapper _mapper;
-
-        protected BaseController(ICommandDispatcher commandDispatcher, IMapper mapper)
+        /// <summary>
+        /// Base call api method.
+        /// </summary>
+        /// <param name="func">Api action</param>
+        /// <param name="successAction"></param>
+        /// <returns></returns>
+        private async Task callApiAsync(Func<HttpClient, Task<HttpResponseMessage>> func, Action<HttpResponseMessage> successAction)
         {
-            _commandDispatcher = commandDispatcher;
-            _mapper = mapper;
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response = await func(client);
+                if (response.IsSuccessStatusCode)
+                {
+                    successAction(response);
+                }
+            }
         }
 
-        protected bool Dispatch<TviewModel, Tcommand>(TviewModel model) where Tcommand : ICommand
-        {/*try,catch*/
-            if (ModelState.IsValid)
-            {
-                var command = _mapper.Map<TviewModel, Tcommand>(model);
-                _commandDispatcher.Dispatch(command);
-                return true;
-            }
-            return false;
+        protected async Task<T> GetApiDataAsync<T>(string url) where T : class, new()
+        {
+            var result = new T();
+
+            await callApiAsync(
+                    async (client) => await client.GetAsync(url),
+                    async (responseMsg) => result = await responseMsg.Content.ReadAsAsync<T>()
+                    );
+            return result;
         }
+
+        protected async Task<HttpStatusCode> PostApiAsync<Tmodel>(string url, Tmodel model) where Tmodel : class
+        {
+            HttpStatusCode code = HttpStatusCode.NotFound; //default
+            await callApiAsync(
+                    async (client) => await client.PostAsJsonAsync<Tmodel>(url, model),
+                    (responseMsg) => code = responseMsg.StatusCode
+                );
+            return code;
+        }
+
+        //TODO: call PUT async, call DELETE asyn
     }
 }

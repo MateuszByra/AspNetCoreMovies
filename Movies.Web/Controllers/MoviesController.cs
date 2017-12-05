@@ -8,30 +8,15 @@ using Movies.Web.Models;
 
 namespace Movies.Web.Controllers
 {
-    public class MoviesController : Controller //: BaseController
+    public class MoviesController : BaseController
     {
-        //private readonly IMovieService _movieService;
-
-        //public MoviesController(ICommandDispatcher commandDispatcher,
-        //    IMapper mapper,
-        //    IMovieService movieService) : base(commandDispatcher, mapper)
-        //{
-        //    _movieService = movieService;
-        //}
+        //TODO: konstrutor przymujacy settings url do api czy cos takiego.
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<MovieDTO> movies = new List<MovieDTO>();
-            using (var client = new HttpClient())
-            {
-                HttpResponseMessage response = await client.GetAsync("http://localhost:57218/api/Movies");
-                if (response.IsSuccessStatusCode)
-                {
-                    movies = await response.Content.ReadAsAsync<IEnumerable<MovieDTO>>();
-                }
-                return View(movies);
-            }
-
+            //TODO urls from settings file
+            var movies = await GetApiDataAsync<List<MovieDTO>>("http://localhost:57218/api/Movies");
+            return View(movies);
         }
 
         public IActionResult CreateMovie()
@@ -42,21 +27,9 @@ namespace Movies.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMovie(MovieViewModel model)
         {
-            //if (Dispatch<MovieViewModel, CreateMovie>(model))
-            //{
-            //    return RedirectToAction("Index");
-            //}
-        
-            using (var client = new HttpClient())
+            if (await PostApiAsync<MovieViewModel>("http://localhost:57218/api/Movies", model) == System.Net.HttpStatusCode.Created)
             {
-                //HttpResponseMessage response = await client.PostAsync("http://localhost:57218/api/Movies",model,new JsonMediaTypeFormatter());
-                HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:57218/api/Movies", model);
-                if (response.IsSuccessStatusCode)
-                {
-                    //movie = await response.Content.ReadAsAsync<IEnumerable<MovieDTO>>();
-                    return RedirectToAction("Index");
-                }
-            
+                return RedirectToAction("Index");
             }
             return View("CreateMovie", model);
         }
