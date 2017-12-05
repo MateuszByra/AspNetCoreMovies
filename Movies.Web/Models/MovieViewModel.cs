@@ -8,7 +8,7 @@ namespace Movies.Web.Models
 {
     public class MovieViewModel
     {
-        //public Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Tytuł jest wymagany.")]
         [MinLength(5, ErrorMessage = "Tytuł musi zawierać minimum 5 znaków.")]
