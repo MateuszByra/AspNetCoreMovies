@@ -12,7 +12,7 @@ namespace Movies.Tests.EndToEnd.Controllers
     [TestFixture]
     public class MoviesControllerTests : ControllerTestsBase
     {
-        private readonly string apiUrl = "api/movies";
+        private readonly string apiUrl = "api/Movies";
 
         [Test]
         public async Task create_movie()
@@ -25,7 +25,7 @@ namespace Movies.Tests.EndToEnd.Controllers
 
             var payload = GetPayload(command);
             var response = await Client.PostAsync(apiUrl, payload);
-
+         
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
             Assert.AreEqual(apiUrl, response.Headers.Location.ToString());
         }
