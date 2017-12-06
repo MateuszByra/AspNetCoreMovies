@@ -45,7 +45,7 @@ namespace Movies.Web.Controllers
             var result = new T();
 
             await callApiAsync(
-                    async (client) => await client.GetAsync($"{url}?id={id}"),
+                    async (client) => await client.GetAsync($"{url}/{id}"),
                     async (responseMsg) => result = await responseMsg.Content.ReadAsAsync<T>()
                     );
             return result;

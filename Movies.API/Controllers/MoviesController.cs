@@ -45,9 +45,9 @@ namespace Movies.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody]MovieDTO command)
+        public IActionResult Update([FromBody]UpdateMovie command)
         {
-            _movieService.UpdateMovie(command.Id, command.Title, command.DurationMinutes);
+            Dispatch(command);
             return Created("api/Movies", null);
         }
         [HttpDelete]

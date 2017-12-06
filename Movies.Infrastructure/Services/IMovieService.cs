@@ -12,6 +12,6 @@ namespace Movies.Infrastructure.Services
         void CreateMovie(CreateMovie command);
         void DeleteMovie(Guid id);
         MovieDTO GetMovie(Guid id);
-        void UpdateMovie(Guid id,string title, double durationInMinutes);
+        void UpdateMovie(UpdateMovie command);
     }
 }

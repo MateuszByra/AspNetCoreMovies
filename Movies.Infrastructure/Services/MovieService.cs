@@ -42,11 +42,11 @@ namespace Movies.Infrastructure.Services
             return _mapper.Map<Movie, MovieDTO>(movie);
         }
 
-        public void UpdateMovie(Guid id, string title, double durationInMinutes)
+        public void UpdateMovie(UpdateMovie command)
         {
-            var movie = _movieRepository.GetMovie(id);
-            movie.Title = title;
-            movie.DurationMinutes = durationInMinutes;
+            var movie = _movieRepository.GetMovie(command.Id);
+            movie.Title = command.Title;
+            movie.DurationMinutes = command.DurationMinutes;
             _movieRepository.UpdateMovie(movie);
         }
     }
