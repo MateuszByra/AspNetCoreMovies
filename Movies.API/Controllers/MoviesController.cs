@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Infrastructure.DTO;
+using Movies.Infrastructure.Queries;
+using Movies.Infrastructure.Queries.Movies;
 using Movies.Infrastructure.Services;
 
 namespace Movies.API.Controllers
@@ -17,15 +19,15 @@ namespace Movies.API.Controllers
     public class MoviesController : ApiControllerBase
     {
         private readonly IMovieService _movieService;
-        public MoviesController(ICommandDispatcher commandDispatcher, IMovieService movieService) : base(commandDispatcher)
+        public MoviesController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, IMovieService movieService) : base(commandDispatcher, queryDispatcher)
         {
             _movieService = movieService;
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(GetMovie query)
         {
-            var result=_movieService.GetMovie(id);
+            var result = DispatchQuery<GetMovie, MovieDTO>(query);
             return Json(result);
         }
 
