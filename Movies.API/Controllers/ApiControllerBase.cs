@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Queries;
+using System.Net;
 
 [Route("[controller]")]
 public abstract class ApiControllerBase : Controller
@@ -23,9 +24,7 @@ public abstract class ApiControllerBase : Controller
 
     protected void Dispatch<Tcommand>(Tcommand command) where Tcommand : ICommand
     {/*try,catch*/
-
         _commandDispatcher.Dispatch(command);
-
     }
 
     protected TResult DispatchQuery<TQuery, TResult>(TQuery query) where TQuery : IQuery

@@ -15,13 +15,13 @@ namespace Movies.Infrastructure.IoC.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterInstance(AutoMapperConfig.Initialize())
-            //    .SingleInstance();
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<QueryModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule(new SettingsModule(_configuration));
+            builder.RegisterInstance(AutoMapperConfig.Initialize())
+                                                    .SingleInstance();
         }
     }
 }

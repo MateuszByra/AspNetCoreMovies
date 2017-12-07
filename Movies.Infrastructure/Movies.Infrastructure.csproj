@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Movies.Core\Movies.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\Commands\" />
-  </ItemGroup>
-
 </Project>

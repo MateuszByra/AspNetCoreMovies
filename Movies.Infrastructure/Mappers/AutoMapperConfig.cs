@@ -21,15 +21,15 @@ namespace Movies.Infrastructure.Mappers
         /// </summary>
         /// <param name="configuration">Configure action</param>
         /// <returns></returns>
-        public static IMapper InitializeMapperForWholeApplication(Action<IMapperConfigurationExpression> configuration)
-        {
-            return new MapperConfiguration(cfg =>
-            {
-                configuration(cfg);
-                cfg.CreateMap<Movie, MovieDTO>();
-            })
-            .CreateMapper();
-        }
+        //public static IMapper InitializeMapperForWholeApplication(Action<IMapperConfigurationExpression> configuration)
+        //{
+        //    return new MapperConfiguration(cfg =>
+        //    {
+        //        configuration(cfg);
+        //        cfg.CreateMap<Movie, MovieDTO>();
+        //    })
+        //    .CreateMapper();
+        //}
 
 
     }

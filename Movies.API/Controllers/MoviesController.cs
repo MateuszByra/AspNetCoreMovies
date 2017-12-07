@@ -18,10 +18,8 @@ namespace Movies.API.Controllers
     [Route("api/Movies")]
     public class MoviesController : ApiControllerBase
     {
-        private readonly IMovieService _movieService;
-        public MoviesController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, IMovieService movieService) : base(commandDispatcher, queryDispatcher)
+        public MoviesController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher) : base(commandDispatcher, queryDispatcher)
         {
-            _movieService = movieService;
         }
 
         [HttpGet("{id}")]
@@ -32,9 +30,9 @@ namespace Movies.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult List()
+        public IActionResult List(ListMovies query)
         {
-            var result = _movieService.GetAll();
+            var result = DispatchQuery<ListMovies, IEnumerable<MovieDTO>>(query);
             return Json(result);
         }
 
@@ -50,13 +48,13 @@ namespace Movies.API.Controllers
         public IActionResult Update([FromBody]UpdateMovie command)
         {
             Dispatch(command);
-            return Created("api/Movies", null);
+            return Ok();
         }
         [HttpDelete]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(DeleteMovie command)
         {
-            _movieService.DeleteMovie(id);
-            return Created("api/Movies", null);
+            Dispatch(command);
+            return Ok();
         }
     }
 }

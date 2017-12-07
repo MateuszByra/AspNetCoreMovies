@@ -8,20 +8,12 @@ namespace Movies.Infrastructure.Queries
         where TService : IService
     {
         protected TService service;
-        private IMapper _mapper;
 
-        protected QueryHandlerBase(TService service, IMapper mapper)
+        protected QueryHandlerBase(TService service)
         {
             this.service = service;
-            this._mapper = mapper;
         }
 
         public abstract TResult Execute(TQuery query);
-        //TODO mapping in this class before return data;
-
-        protected TResult Map<T>(T data) where T:class
-        {
-            return _mapper.Map<T, TResult>(data);
-        }
     }
 }

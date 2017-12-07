@@ -6,10 +6,11 @@ using Movies.Core.Repositories;
 using AutoMapper;
 using Movies.Core.Domain;
 using Movies.Infrastructure.Commands.Movies;
+using Movies.Infrastructure.Services.Movies;
 
 namespace Movies.Infrastructure.Services
 {
-    public class MovieService : IMovieService
+    public class MovieService : IMovieQueryService, IMovieCommandService
     {
         private readonly IMovieRepository _movieRepository;
         private readonly IMapper _mapper;
