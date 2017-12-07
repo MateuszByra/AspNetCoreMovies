@@ -26,6 +26,10 @@ namespace Movies.API.Controllers
         public IActionResult Get(GetMovie query)
         {
             var result = DispatchQuery<GetMovie, MovieDTO>(query);
+            if (result == null)
+            {
+                return NotFound();
+            }
             return Json(result);
         }
 
@@ -48,13 +52,13 @@ namespace Movies.API.Controllers
         public IActionResult Update([FromBody]UpdateMovie command)
         {
             Dispatch(command);
-            return Ok();
+            return NoContent();
         }
         [HttpDelete]
         public IActionResult Delete(DeleteMovie command)
         {
             Dispatch(command);
-            return Ok();
+            return NoContent();
         }
     }
 }
