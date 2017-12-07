@@ -1,6 +1,7 @@
 ﻿using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Infrastructure.Services.Movies;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Handlers.Commands.Movies
 {
@@ -10,9 +11,9 @@ namespace Movies.Infrastructure.Handlers.Commands.Movies
         {    
         }
 
-        public override void Handle(DeleteMovie command)
+        public override async Task HandleAsync(DeleteMovie command)
         {
-           service.DeleteMovie(command.Id);
+           await service.DeleteMovie(command.Id);
         }
     }
 }

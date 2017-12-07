@@ -7,6 +7,7 @@ using AutoMapper;
 using Movies.Core.Domain;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Infrastructure.Services.Movies;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Services
 {
@@ -19,15 +20,15 @@ namespace Movies.Infrastructure.Services
             _movieRepository = movieRepository;
         }
 
-        public void CreateMovie(CreateMovie command)
+        public async Task CreateMovie(CreateMovie command)
         {
-            var movie = Movie.CreateMovie(command.Title, command.DurationMinutes);
+            var movie = await Movie.CreateMovie(command.Title, command.DurationMinutes);
             _movieRepository.AddMovie(movie);
         }
 
-        public void DeleteMovie(Guid id)
+        public async Task DeleteMovie(Guid id)
         {
-            _movieRepository.DeleteMovie(id);
+            await _movieRepository.DeleteMovie(id);
         }
 
         public IEnumerable<MovieDTO> GetAll()
@@ -37,16 +38,16 @@ namespace Movies.Infrastructure.Services
 
         public MovieDTO GetMovie(Guid id)
         {
-            var movie = _movieRepository.GetMovie(id);
+            var movie = await _movieRepository.GetMovie(id);
             return Map<Movie, MovieDTO>(movie);
         }
 
-        public void UpdateMovie(UpdateMovie command)
+        public async Task UpdateMovie(UpdateMovie command)
         {
-            var movie = _movieRepository.GetMovie(command.Id);
+            var movie = await _movieRepository.GetMovie(command.Id);
             movie.Title = command.Title;
             movie.DurationMinutes = command.DurationMinutes;
-            _movieRepository.UpdateMovie(movie);
+            await _movieRepository.UpdateMovie(movie);
         }
     }
 }

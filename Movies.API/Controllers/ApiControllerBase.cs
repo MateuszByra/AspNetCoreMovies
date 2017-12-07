@@ -22,13 +22,13 @@ public abstract class ApiControllerBase : Controller
         _queryDispatcher = queryDispatcher;
     }
 
-    protected void Dispatch<Tcommand>(Tcommand command) where Tcommand : ICommand
+    protected async Task DispatchAsync<Tcommand>(Tcommand command) where Tcommand : ICommand
     {/*try,catch*/
-        _commandDispatcher.Dispatch(command);
+        await _commandDispatcher.Dispatch(command);
     }
 
-    protected TResult DispatchQuery<TQuery, TResult>(TQuery query) where TQuery : IQuery
+    protected async Task<TResult> DispatchQueryAsync<TQuery, TResult>(TQuery query) where TQuery : IQuery
     {
-        return _queryDispatcher.Dispatch<TQuery, TResult>(query);
+        return await _queryDispatcher.Dispatch<TQuery, TResult>(query);
     }
 }

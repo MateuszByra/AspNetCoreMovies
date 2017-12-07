@@ -1,6 +1,7 @@
 ﻿using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Infrastructure.Services.Movies;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Handlers.Commands.Movies
 {
@@ -10,9 +11,9 @@ namespace Movies.Infrastructure.Handlers.Commands.Movies
         {
         }
 
-        public override void Handle(CreateMovie command)
+        public override async Task HandleAsync(CreateMovie command)
         {
-            service.CreateMovie(command);
+            await service.CreateMovie(command);
         }
     }
 }

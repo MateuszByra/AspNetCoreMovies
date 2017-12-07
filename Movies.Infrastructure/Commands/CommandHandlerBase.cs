@@ -1,4 +1,5 @@
 ﻿using Movies.Infrastructure.Services;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Commands
 {
@@ -14,6 +15,6 @@ namespace Movies.Infrastructure.Commands
             this.service = service;
         }
 
-        public abstract void Handle(TCommand command);
+        public abstract Task HandleAsync(TCommand command);
     }
 }

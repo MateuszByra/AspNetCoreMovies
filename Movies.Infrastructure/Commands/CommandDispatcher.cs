@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Commands
 {
@@ -15,7 +16,7 @@ namespace Movies.Infrastructure.Commands
             _context = context;
         }
 
-        public void Dispatch<T>(T command) where T : ICommand
+        public async Task Dispatch<T>(T command) where T : ICommand
         {
             if (command == null)
             {
@@ -23,7 +24,7 @@ namespace Movies.Infrastructure.Commands
                     $"Command: '{typeof(T).Name}' can not be null.");
             }
             var handler = _context.Resolve<ICommandHandler<T>>();
-            handler.Handle(command);
+            await handler.Handle(command);
         }
     }
 }

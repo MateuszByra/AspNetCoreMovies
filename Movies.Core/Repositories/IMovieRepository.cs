@@ -2,15 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Movies.Core.Repositories
 {
     public interface IMovieRepository : IRepository
     {
-        Movie GetMovie(Guid id);
-        void AddMovie(Movie movie);
-        void UpdateMovie(Movie movie);
-        void DeleteMovie(Guid id);
-        IEnumerable<Movie> GetAll();
+        Task<Movie> GetMovie(Guid id);
+        Task AddMovie(Movie movie);
+        Task UpdateMovie(Movie movie);
+        Task DeleteMovie(Guid id);
+        IEnumerable<Movie> GetAllAsync();
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace Movies.Infrastructure.Queries
+﻿using System.Threading.Tasks;
+
+namespace Movies.Infrastructure.Queries
 {
     public interface IQueryDispatcher
     {
-        TResult Dispatch<TQuery, TResult>(TQuery query) where TQuery : IQuery;
+        Task<TResult> Dispatch<TQuery, TResult>(TQuery query) where TQuery : IQuery;
     }
 }

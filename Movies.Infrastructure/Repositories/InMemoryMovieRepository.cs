@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Movies.Core.Domain;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Repositories
 {
@@ -11,25 +12,27 @@ namespace Movies.Infrastructure.Repositories
     {
         private static ISet<Movie> _movies = new HashSet<Movie>();
 
-        public void AddMovie(Movie movie)
+        public async Task AddMovie(Movie movie)
         {
             _movies.Add(movie);
+            await Task.CompletedTask;
         }
 
-        public void DeleteMovie(Guid id)
+        public async Task DeleteMovie(Guid id)
         {
-            var movie = GetMovie(id);
+            var movie = await GetMovie(id);
             _movies.Remove(movie);
+            await Task.CompletedTask;
         }
 
-        public IEnumerable<Movie> GetAll() => _movies;
+        public async Task<IEnumerable<Movie>> GetAllAsync() => await Task.FromResult(_movies);
 
-        public Movie GetMovie(Guid id) => _movies.FirstOrDefault(x => x.Id == id);
+        public async Task<Movie> GetMovie(Guid id) => await Task.FromResult(_movies.FirstOrDefault(x => x.Id == id));
 
-        public void UpdateMovie(Movie movie)
+        public async Task UpdateMovie(Movie movie)
         {
-            DeleteMovie(movie.Id);
-            AddMovie(movie);
+            await DeleteMovie(movie.Id);
+            await AddMovie(movie);
         }
     }
 }

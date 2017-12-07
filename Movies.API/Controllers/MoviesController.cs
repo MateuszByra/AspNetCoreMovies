@@ -23,9 +23,9 @@ namespace Movies.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(GetMovie query)
+        public async Task<IActionResult> GetAsync(GetMovie query)
         {
-            var result = DispatchQuery<GetMovie, MovieDTO>(query);
+            var result = await DispatchQueryAsync<GetMovie, MovieDTO>(query);
             if (result == null)
             {
                 return NotFound();
@@ -34,30 +34,30 @@ namespace Movies.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult List(ListMovies query)
+        public async Task<IActionResult> List(ListMovies query)
         {
-            var result = DispatchQuery<ListMovies, IEnumerable<MovieDTO>>(query);
+            var result = await DispatchQueryAsync<ListMovies, IEnumerable<MovieDTO>>(query);
             return Json(result);
         }
 
 
         [HttpPost]
-        public IActionResult Save([FromBody]CreateMovie command)
+        public async Task<IActionResult> Save([FromBody]CreateMovie command)
         {
-            Dispatch(command);
+            await DispatchAsync(command);
             return Created("api/Movies", null);
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody]UpdateMovie command)
+        public async Task<IActionResult> Update([FromBody]UpdateMovie command)
         {
-            Dispatch(command);
+            await DispatchAsync(command);
             return NoContent();
         }
         [HttpDelete]
-        public IActionResult Delete(DeleteMovie command)
+        public async Task<IActionResult> Delete(DeleteMovie command)
         {
-            Dispatch(command);
+            await DispatchAsync(command);
             return NoContent();
         }
     }
