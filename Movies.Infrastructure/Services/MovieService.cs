@@ -10,15 +10,13 @@ using Movies.Infrastructure.Services.Movies;
 
 namespace Movies.Infrastructure.Services
 {
-    public class MovieService : IMovieQueryService, IMovieCommandService
+    public class MovieService : ServiceBase, IMovieQueryService, IMovieCommandService
     {
         private readonly IMovieRepository _movieRepository;
-        private readonly IMapper _mapper;
 
-        public MovieService(IMovieRepository movieRepository, IMapper mapper)
+        public MovieService(IMovieRepository movieRepository, IMapper mapper) : base(mapper)
         {
             _movieRepository = movieRepository;
-            _mapper = mapper;
         }
 
         public void CreateMovie(CreateMovie command)
@@ -34,13 +32,13 @@ namespace Movies.Infrastructure.Services
 
         public IEnumerable<MovieDTO> GetAll()
         {
-            return _mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(_movieRepository.GetAll());
+            return Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(_movieRepository.GetAll());
         }
 
         public MovieDTO GetMovie(Guid id)
         {
             var movie = _movieRepository.GetMovie(id);
-            return _mapper.Map<Movie, MovieDTO>(movie);
+            return Map<Movie, MovieDTO>(movie);
         }
 
         public void UpdateMovie(UpdateMovie command)
