@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Movies.Core.Domain;
 
 namespace Movies.Infrastructure.Services
 {
@@ -14,9 +16,14 @@ namespace Movies.Infrastructure.Services
             _mapper = mapper;
         }
 
-        protected TResult Map<TSource, TResult>(TSource source) where TSource : class
+        protected TResult Map<TSource, TResult>(IEnumerable<Movie> source) where TSource : class
         {
             return _mapper.Map<TSource,TResult>(source);
+        }
+
+        protected T2 Map<T1, T2>(Task<T1> task)
+        {
+            throw new NotImplementedException();
         }
     }
 }

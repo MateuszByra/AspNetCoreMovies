@@ -31,15 +31,15 @@ namespace Movies.Infrastructure.Services
             await _movieRepository.DeleteMovie(id);
         }
 
-        public IEnumerable<MovieDTO> GetAll()
+        public async Task<IEnumerable<MovieDTO>> GetAll()
         {
-            return Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(_movieRepository.GetAll());
+            return  Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(_movieRepository.GetAll());
         }
 
-        public MovieDTO GetMovie(Guid id)
+        public async Task<MovieDTO> GetMovie(Guid id)
         {
-            var movie = await _movieRepository.GetMovie(id);
-            return Map<Movie, MovieDTO>(movie);
+
+            return Map<Movie, MovieDTO>(_movieRepository.GetMovie(id));
         }
 
         public async Task UpdateMovie(UpdateMovie command)

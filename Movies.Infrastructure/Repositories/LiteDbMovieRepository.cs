@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using LiteDB;
 using Movies.Core.Domain;
 using Movies.Core.Repositories;
@@ -23,30 +24,30 @@ namespace Movies.Infrastructure.Repositories
         {
             _conection = new LiteDatabase(settings.DatabaseName);
         }
-        public Movie GetMovie(Guid id)
+        public async Task<Movie> GetMovie(Guid id)
         {
             var colection = _conection.GetCollection<Movie>(tableName);
-            return colection.FindById(id);
+            return  colection.FindById(id);
         }
 
-        public void AddMovie(Movie movie)
+        public async Task AddMovie(Movie movie)
         {
             InsertOrUpdate(movie);
         }
 
-        public void UpdateMovie(Movie movie)
+        public async Task UpdateMovie(Movie movie)
         {
             InsertOrUpdate(movie);
         }
 
-        public void DeleteMovie(Guid id)
+        public async Task DeleteMovie(Guid id)
         {
             var collection = _conection.GetCollection<Movie>(tableName);
             var row = collection.FindOne(x => x.Id == id);
             collection.Delete(row.Id);
         }
 
-        public IEnumerable<Movie> GetAll()
+        public async Task<IEnumerable<Movie>> GetAll()
         {
             var colection = _conection.GetCollection<Movie>(tableName);
             return colection.FindAll();

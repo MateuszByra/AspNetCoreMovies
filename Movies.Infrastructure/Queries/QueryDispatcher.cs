@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Autofac;
 using Movies.Infrastructure.Commands;
 
@@ -13,7 +14,7 @@ namespace Movies.Infrastructure.Queries
             _context = context;
         }
 
-        public TResult Dispatch<TQuery, TResult>(TQuery query) where TQuery : IQuery
+        public async Task<TResult> Dispatch<TQuery, TResult>(TQuery query) where TQuery : IQuery
         {
             if (query == null)
             {

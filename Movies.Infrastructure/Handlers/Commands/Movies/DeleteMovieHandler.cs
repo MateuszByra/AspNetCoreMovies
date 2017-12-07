@@ -11,7 +11,7 @@ namespace Movies.Infrastructure.Handlers.Commands.Movies
         {    
         }
 
-        public override async Task HandleAsync(DeleteMovie command)
+        public override async Task Handle(DeleteMovie command)
         {
            await service.DeleteMovie(command.Id);
         }

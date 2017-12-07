@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Movies.Core.Domain
 {
@@ -22,7 +23,7 @@ namespace Movies.Core.Domain
             DurationMinutes = durationMinutes;
         }
 
-        public static Movie CreateMovie(string title, double durationMinutes)
+        public static async Task<Movie> CreateMovie(string title, double durationMinutes)
         {
             return new Movie(title, durationMinutes);
         }

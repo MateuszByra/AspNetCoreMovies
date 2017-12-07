@@ -1,4 +1,6 @@
-﻿namespace Movies.Infrastructure.Queries
+﻿using System.Threading.Tasks;
+
+namespace Movies.Infrastructure.Queries
 {
     public interface IQueryHandler<in TQuery, out TResult> 
         where TQuery : IQuery

@@ -7,6 +7,6 @@ namespace Movies.Infrastructure.Commands
 {
     public interface ICommandHandler<T> where T : ICommand
     {
-        Task HandleAsync(T command);
+        Task Handle(T command);
     }
 }

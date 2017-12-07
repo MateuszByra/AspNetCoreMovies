@@ -15,6 +15,6 @@ namespace Movies.Infrastructure.Commands
             this.service = service;
         }
 
-        public abstract Task HandleAsync(TCommand command);
+        public abstract Task Handle(TCommand command);
     }
 }

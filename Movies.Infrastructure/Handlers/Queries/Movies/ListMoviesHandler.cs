@@ -5,6 +5,7 @@ using Movies.Infrastructure.Services.Movies;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Handlers.Queries.Movies
 {
@@ -14,7 +15,7 @@ namespace Movies.Infrastructure.Handlers.Queries.Movies
         {
 
         }
-        public override IEnumerable<MovieDTO> Execute(ListMovies query)
+        public override Task<IEnumerable<MovieDTO>> Execute(ListMovies query)
         {
             return service.GetAll();
         }

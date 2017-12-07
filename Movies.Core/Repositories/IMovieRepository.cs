@@ -12,6 +12,6 @@ namespace Movies.Core.Repositories
         Task AddMovie(Movie movie);
         Task UpdateMovie(Movie movie);
         Task DeleteMovie(Guid id);
-        IEnumerable<Movie> GetAllAsync();
+        Task<IEnumerable<Movie>> GetAll();
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Movies.Infrastructure.Services;
 
 namespace Movies.Infrastructure.Queries
@@ -14,6 +15,6 @@ namespace Movies.Infrastructure.Queries
             this.service = service;
         }
 
-        public abstract TResult Execute(TQuery query);
+        public abstract Task<TResult> Execute(TQuery query);
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Movies.Infrastructure.DTO;
 using Movies.Infrastructure.Queries;
 using Movies.Infrastructure.Queries.Movies;
@@ -13,7 +14,7 @@ namespace Movies.Infrastructure.Handlers.Queries.Movies
         {
         }
 
-        public override MovieDTO Execute(GetMovie query)
+        public override Task<MovieDTO> Execute(GetMovie query)
         {
             return service.GetMovie(query.Id);
         }

@@ -11,7 +11,7 @@ namespace Movies.Infrastructure.Handlers.Commands.Movies
         {
         }
 
-        public override async Task HandleAsync(CreateMovie command)
+        public override async Task Handle(CreateMovie command)
         {
             await service.CreateMovie(command);
         }

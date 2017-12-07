@@ -1,4 +1,5 @@
-﻿using Movies.Infrastructure.Commands;
+﻿using System.Threading.Tasks;
+using Movies.Infrastructure.Commands;
 using Movies.Infrastructure.Commands.Movies;
 using Movies.Infrastructure.Services.Movies;
 
@@ -10,9 +11,9 @@ namespace Movies.Infrastructure.Handlers.Commands.Movies
         {
         }
 
-        public override void Handle(UpdateMovie command)
+        public override Task Handle(UpdateMovie command)
         {
-            service.UpdateMovie(command);
+            return service.UpdateMovie(command);
         }
     }
 }
