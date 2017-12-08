@@ -23,7 +23,7 @@ namespace Movies.Infrastructure.Services
         public async Task CreateMovie(CreateMovie command)
         {
             var movie = await Movie.CreateMovie(command.Title, command.DurationMinutes);
-            _movieRepository.AddMovie(movie);
+            await _movieRepository.AddMovie(movie);
         }
 
         public async Task DeleteMovie(Guid id)
@@ -33,13 +33,13 @@ namespace Movies.Infrastructure.Services
 
         public async Task<IEnumerable<MovieDTO>> GetAll()
         {
-            return  Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(_movieRepository.GetAll());
+            return Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(await _movieRepository.GetAll());
         }
 
         public async Task<MovieDTO> GetMovie(Guid id)
         {
 
-            return Map<Movie, MovieDTO>(_movieRepository.GetMovie(id));
+            return Map<Movie, MovieDTO>(await _movieRepository.GetMovie(id));
         }
 
         public async Task UpdateMovie(UpdateMovie command)

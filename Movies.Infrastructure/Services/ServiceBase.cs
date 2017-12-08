@@ -11,19 +11,14 @@ namespace Movies.Infrastructure.Services
     {
         private readonly IMapper _mapper;
 
-        public ServiceBase(IMapper mapper)
+        protected ServiceBase(IMapper mapper)
         {
             _mapper = mapper;
         }
 
-        protected TResult Map<TSource, TResult>(IEnumerable<Movie> source) where TSource : class
+        protected TResult Map<TSource, TResult>(TSource source) where TSource : class
         {
-            return _mapper.Map<TSource,TResult>(source);
-        }
-
-        protected T2 Map<T1, T2>(Task<T1> task)
-        {
-            throw new NotImplementedException();
+            return _mapper.Map<TSource, TResult>(source);
         }
     }
 }

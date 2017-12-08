@@ -22,7 +22,7 @@ namespace Movies.Infrastructure.Queries
                     $"Query: '{typeof(TQuery).Name}' can not be null.");
             }
             var handler = _context.Resolve<IQueryHandler<TQuery, TResult>>();
-            return handler.Execute(query);
+            return await handler.Execute(query);
         }
     }
 }
