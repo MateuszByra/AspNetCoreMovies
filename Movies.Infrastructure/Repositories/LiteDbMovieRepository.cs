@@ -27,17 +27,18 @@ namespace Movies.Infrastructure.Repositories
         public async Task<Movie> GetMovie(Guid id)
         {
             var colection = _conection.GetCollection<Movie>(tableName);
-            return  colection.FindById(id);
+            var movie = await Task.FromResult(colection.FindById(id));
+            return movie;
         }
 
         public async Task AddMovie(Movie movie)
         {
-            InsertOrUpdate(movie);
+            await InsertOrUpdate(movie);
         }
 
         public async Task UpdateMovie(Movie movie)
         {
-            InsertOrUpdate(movie);
+            await InsertOrUpdate(movie);
         }
 
         public async Task DeleteMovie(Guid id)
@@ -45,15 +46,16 @@ namespace Movies.Infrastructure.Repositories
             var collection = _conection.GetCollection<Movie>(tableName);
             var row = collection.FindOne(x => x.Id == id);
             collection.Delete(row.Id);
+            await Task.CompletedTask;
         }
 
         public async Task<IEnumerable<Movie>> GetAll()
         {
-            var colection = _conection.GetCollection<Movie>(tableName);
+            var colection = await Task.FromResult(_conection.GetCollection<Movie>(tableName));
             return colection.FindAll();
         }
 
-        private void InsertOrUpdate(Movie model)
+        private async Task InsertOrUpdate(Movie model)
         {
             var colection = _conection.GetCollection<Movie>(tableName);
             if (colection.Find(x => x.Id == model.Id).Any())
@@ -65,6 +67,13 @@ namespace Movies.Infrastructure.Repositories
                 colection.Insert(model);
                 colection.EnsureIndex(x => x.Title);
             }
+            await Task.CompletedTask;
+        }
+
+        public async Task<Movie> CreateAsync(string title, double durationInMinutes)
+        {
+            var movie = await Task.FromResult(Movie.CreateMovie(title, durationInMinutes));
+            return movie;
         }
     }
 }

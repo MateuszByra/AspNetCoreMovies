@@ -26,6 +26,11 @@ namespace Movies.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Movie>> GetAll() => await Task.FromResult(_movies);
+        public async Task<Movie> CreateAsync(string title, double durationInMinutes)
+        {
+            var movie=await Task.FromResult(Movie.CreateMovie(title, durationInMinutes));
+            return movie;
+        }
 
         public async Task<Movie> GetMovie(Guid id) => await Task.FromResult(_movies.FirstOrDefault(x => x.Id == id));
 

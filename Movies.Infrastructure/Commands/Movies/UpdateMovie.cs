@@ -7,5 +7,6 @@ namespace Movies.Infrastructure.Commands.Movies
         public Guid Id { get; set; }
         public string Title { get; set; }
         public double DurationMinutes { get; set; }
+        public Guid DirectorId { get; set; }
     }
 }

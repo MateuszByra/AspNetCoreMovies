@@ -8,5 +8,6 @@ namespace Movies.Infrastructure.Commands.Movies
     {
         public string Title { get; set; }
         public double DurationMinutes { get; set; }
+        public Guid DirectorId { get; set; }
     }
 }

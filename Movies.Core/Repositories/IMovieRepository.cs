@@ -13,5 +13,6 @@ namespace Movies.Core.Repositories
         Task UpdateMovie(Movie movie);
         Task DeleteMovie(Guid id);
         Task<IEnumerable<Movie>> GetAll();
+        Task<Movie> CreateAsync(string title, double durationInMinutes);
     }
 }

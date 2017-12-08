@@ -9,5 +9,6 @@ namespace Movies.Infrastructure.DTO
         public Guid Id { get; set; }
         public string Title { get; set; }
         public double DurationMinutes { get; set; }
+        public DirectorDTO Director { get; set; }
     }
 }
