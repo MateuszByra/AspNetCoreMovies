@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Movies.Infrastructure.Repositories
 {
-    public class InMemoryMovieRepository : IMovieRepository, ILiteDbRepository
+    public class InMemoryMovieRepository : IMovieRepository
     {
         private static ISet<Movie> _movies = new HashSet<Movie>();
 
@@ -28,7 +28,7 @@ namespace Movies.Infrastructure.Repositories
         public async Task<IEnumerable<Movie>> GetAll() => await Task.FromResult(_movies);
         public async Task<Movie> CreateAsync(string title, double durationInMinutes)
         {
-            var movie=await Task.FromResult(Movie.CreateMovie(title, durationInMinutes));
+            var movie = await Task.FromResult(Movie.CreateMovie(title, durationInMinutes));
             return movie;
         }
 

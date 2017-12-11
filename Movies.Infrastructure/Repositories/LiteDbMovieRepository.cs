@@ -18,7 +18,6 @@ namespace Movies.Infrastructure.Repositories
     {
         private LiteDatabase _conection;
         private const string tableName = "Movies";
-        //private const string databaseName = "DbNoSqlLiteDatabase.db";
 
         public LiteDbMovieRepository(LiteDbSettings settings)
         {

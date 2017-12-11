@@ -4,7 +4,7 @@ using Movies.Core.Domain;
 
 namespace Movies.Core.Repositories
 {
-    public interface IDirectorRepository
+    public interface IDirectorRepository : IRepository
     {
         Task<Director> GetAsync(Guid id);
         Task SaveAsync(Director director);
