@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Movies.Infrastructure.IoC.Modules;
 using Movies.Infrastructure.Mappers;
+using Movies.API.Middlewares;
 
 namespace Movies.API
 {
@@ -61,8 +62,8 @@ namespace Movies.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMoviesExceptionHandler();
             app.UseMvc();
-
 
             appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }

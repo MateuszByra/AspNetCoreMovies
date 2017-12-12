@@ -7,6 +7,7 @@ using Movies.Core.Domain;
 using Movies.Infrastructure.Commands.Movies;
 using System.Threading.Tasks;
 using Movies.Infrastructure.Repositories;
+using Movies.Infrastructure.Exceptions;
 
 namespace Movies.Infrastructure.Services.Movies
 {
@@ -42,7 +43,13 @@ namespace Movies.Infrastructure.Services.Movies
 
         public async Task<MovieDTO> GetMovie(Guid id)
         {
-            return Map<Movie, MovieDTO>(await _movieRepository.GetMovie(id));
+            var movie = Map<Movie, MovieDTO>(await _movieRepository.GetMovie(id));
+            if (movie == null)
+            {
+                throw new ServiceException(ErrorCodes.MovieNodFound,
+                    $"Movie with id: {id} not found.");
+            }
+            return movie;
         }
 
         public async Task UpdateMovie(UpdateMovie command)
