@@ -24,9 +24,10 @@ namespace Movies.Infrastructure.Services.Movies
 
         public async Task CreateMovie(CreateMovie command)
         {
+            var director = _directorRepository.GetAsync(command.DirectorId);
             var movie = await _movieRepository.CreateAsync(command.Title, command.DurationMinutes);
-            var director = await _directorRepository.GetAsync(command.DirectorId);
-            movie.SetDirector(director);
+
+            movie.SetDirector(await director);
 
             await _movieRepository.AddMovie(movie);
         }
@@ -54,11 +55,13 @@ namespace Movies.Infrastructure.Services.Movies
 
         public async Task UpdateMovie(UpdateMovie command)
         {
+            var director = _directorRepository.GetAsync(command.DirectorId);
             var movie = await _movieRepository.GetMovie(command.Id);
             movie.Title = command.Title;
             movie.DurationMinutes = command.DurationMinutes;
-            var director = await _directorRepository.GetAsync(command.DirectorId);
-            movie.SetDirector(director);
+
+
+            movie.SetDirector(await director);
             await _movieRepository.UpdateMovie(movie);
         }
     }
